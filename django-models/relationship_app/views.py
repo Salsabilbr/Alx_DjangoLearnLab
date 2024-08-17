@@ -15,3 +15,20 @@ class LibraryDetailView(ListView):
    model = Library
    template_name = 'library_detail.html'
    context_object_name = 'library'
+from django.contrib.auth import views as auth_views  
+from django.shortcuts import render, redirect  
+from django.contrib.auth.forms import UserCreationForm  
+  
+def register(request):  
+   if request.method == 'POST':  
+      form = UserCreationForm(request.POST)  
+      if form.is_valid():  
+        form.save()  
+        return redirect('login')  
+   else:  
+      form = UserCreationForm()  
+   return render(request, 'egister.html', {'form': form})  
+  
+def logout_view(request):  
+   auth_views.logout(request)  
+   return render(request, 'logout.html')
