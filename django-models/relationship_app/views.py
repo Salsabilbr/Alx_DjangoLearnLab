@@ -4,6 +4,7 @@ from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm  
 def list_books(request):  
    books = Book.objects.all()  
+    ("relationship_app/list_books.html")
    return render(request, 'list_books.html', {'books': books})
 from django.views.generic import ListView
 from.models import Library
