@@ -11,6 +11,7 @@ from.models import Library
 
 class LibraryDetailView(ListView):
    ("relationship_app/library_detail.html", "from .models import Library")
+   ("from django.views.generic.detail import DetailView")
    model = Library
    template_name = 'library_detail.html'
    context_object_name = 'library'
