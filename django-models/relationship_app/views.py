@@ -10,6 +10,7 @@ from django.views.generic import ListView
 from.models import Library
 
 class LibraryDetailView(ListView):
-   model = Library
+   ("relationship_app/library_detail.html", "from .models import Library")
+   model = Library
    template_name = 'library_detail.html'
    context_object_name = 'library'
