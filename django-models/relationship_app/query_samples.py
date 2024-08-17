@@ -14,4 +14,5 @@ print(books_in_library)
 # Retrieve the librarian for a library
 library = Library.objects.get(name='New York Public Library')
 librarian = Librarian.objects.get(library=library)
+Library.objects.get(name=library_name)
 print(librarian.name)
