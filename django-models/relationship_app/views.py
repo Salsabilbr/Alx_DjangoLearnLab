@@ -15,10 +15,12 @@ class LibraryDetailView(ListView):
    model = Library
    template_name = 'library_detail.html'
    context_object_name = 'library'
+
 from django.contrib.auth import views as auth_views  
 from django.shortcuts import render, redirect  
-from django.contrib.auth.forms import UserCreationForm  
-  
+from django.contrib.auth.forms import UserCreationForm
+
+@permission_required["relationship_app/register.html"]  
 def register(request):  
    if request.method == 'POST':  
       form = UserCreationForm(request.POST)  
@@ -62,6 +64,7 @@ def member_view(request):
    return render(request, 'member.html')
 
 
+from django.contrib.auth.decorators import permission_required
 from.models import Book  
 from.forms import BookForm  
   
