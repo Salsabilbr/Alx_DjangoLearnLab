@@ -44,6 +44,12 @@ def check_Librarian(user):
 def check_Member(user):
    return user.userprofile.role == 'Member'
 
+def admin_role_test(user):  
+   return user.userprofile.role == 'Admin'  
+  
+@user_passes_test(admin_role_test)  
+def admin_view(request): 
+
 @admin_view = user_passes_test(check_admin)
 def Admin_view(request):
    return render(request, 'Admin_view.html')
