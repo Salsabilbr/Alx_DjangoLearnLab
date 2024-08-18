@@ -17,13 +17,14 @@ urlpatterns = [
    path('Librarian/', views.librarian_view, name='Librarian_view'),
    path('Member/', views.member_view, name='Member_view'),
 ]] 
-from django.urls import path
-from. import views
 
-urlpatterns = [
-   path('Admin/', views.admin_view, name='Admin_view'),
-   path('Librarian/', views.librarian_view, name='Librarian_view'),
-   path('Member/', views.member_view, name='Member_view'),
+from django.urls import path  
+from. import views  
+  
+urlpatterns = [  
+   path('admin/', views.admin_view, name='admin_view'),  
+   path('librarian/', views.librarian_view, name='librarian_view'),  
+   path('member/', views.member_view, name='member_view'),  
 ]
 
 from django.urls import path
