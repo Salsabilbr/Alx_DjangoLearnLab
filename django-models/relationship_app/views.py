@@ -32,38 +32,35 @@ def register(request):
 def logout_view(request):  
    auth_views.logout(request)  
    return render(request, 'logout.html')
-from django.shortcuts import render
-from django.contrib.auth.decorators import user_passes_test
 
-def check_Admin(user):
-   return user.userprofile.role == 'Admin'
-
-def check_Librarian(user):
-   return user.userprofile.role == 'Librarian'
-
-def check_Member(user):
-   return user.userprofile.role == 'Member'
-
-def admin_role_test(user):  
-   return user.userprofile.role == 'Admin'  
+from django.contrib.auth.decorators import login_required, user_passes_test  
+from django.shortcuts import render  
   
+def admin_role_test(user):  
+   return user.userprofile.role == 'Admin'  
+  
+def librarian_role_test(user):  
+   return user.userprofile.role == 'Librarian'  
+  
+def member_role_test(user):  
+   return user.userprofile.role == 'Member'  
+  
+@login_required  
 @user_passes_test(admin_role_test)  
-def admin_view(request): 
+def admin_view(request):  
+   return render(request, 'admin.html')  
+  
+@login_required  
+@user_passes_test(librarian_role_test)  
+def librarian_view(request):  
+   return render(request, 'librarian.html')  
+  
+@login_required  
+@user_passes_test(member_role_test)  
+def member_view(request):  
+   return render(request, 'member.html')
 
-@admin_view = user_passes_test(check_admin)
-def Admin_view(request):
-   return render(request, 'Admin_view.html')
 
-@user_passes_test(check_librarian)
-def Librarian_view(request):
-   return render(request, 'Librarian_view.html')
-
-@user_passes_test(check_member)
-def Member_view(request):
-   return render(request, 'Member_view.html')
-
-from django.contrib.auth.decorators import permission_required  
-from django.shortcuts import render, redirect  
 from.models import Book  
 from.forms import BookForm  
   
@@ -95,3 +92,5 @@ def delete_book(request, pk):
    book = Book.objects.get(pk=pk)  
    book.delete()  
    return redirect('book_list')
+
+
