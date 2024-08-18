@@ -33,8 +33,9 @@ def logout_view(request):
    auth_views.logout(request)  
    return render(request, 'logout.html')
 
-from django.contrib.auth.decorators import login_required, user_passes_test  
-from django.shortcuts import render  
+from django.contrib.auth.decorators import login_required, user_passes_test
+from django.shortcuts import render
+from.models import UserProfile 
   
 def admin_role_test(user):  
    return user.userprofile.role == 'Admin'  
