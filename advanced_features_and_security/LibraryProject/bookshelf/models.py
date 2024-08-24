@@ -23,3 +23,17 @@ class CustomUserManager(BaseUserManager):
    def create_superuser(self, username, email, password, **extra_fields):
       pass
 
+from django.db import models  
+  
+class Message(models.Model):  
+   title = models.CharField(max_length=200)  
+   author = models.CharField(max_length=100)  
+  
+   class Meta:  
+      permissions = (  
+        ('can_view', 'Can view'),  
+        ('can_create', 'Can create'),  
+        ('can_edit', 'Can edit'),  
+        ('can_delete', 'Can delete'),
+        ('can_create', 'can_delete'),              
+      )
