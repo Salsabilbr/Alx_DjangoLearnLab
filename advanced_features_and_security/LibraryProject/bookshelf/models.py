@@ -10,6 +10,16 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models  
   
 class CustomUser(AbstractUser):
-    ["class CustomUserManager(BaseUserManager):", "create_user", "create_superuser"]
    date_of_birth = models.DateField(null=True, blank=True)  
    profile_photo = models.ImageField(upload_to='profile_photos/', null=True, blank=True)
+
+from django.contrib.auth.models import UserManager
+from django.utils.translation import gettext_lazy as _
+
+class CustomUserManager(BaseUserManager):
+   def create_user(self, username, email, password, **extra_fields):
+      pass
+
+   def create_superuser(self, username, email, password, **extra_fields):
+      pass
+
