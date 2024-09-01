@@ -30,3 +30,5 @@ def delete_book_view(request, pk):
    book = Book.objects.get(pk=pk)
    book.delete()
    return redirect('book_list')
+
+from .forms import ExampleForm
