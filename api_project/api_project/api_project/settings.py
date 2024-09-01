@@ -41,6 +41,10 @@ INSTALLED_APPS = [
     'api',
 ]
 
+rest_framework = {}
+
+REST-FRAMEWORK = {}
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
