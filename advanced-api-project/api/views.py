@@ -70,3 +70,41 @@ class BookDetailView(generics.RetrieveAPIView):
    ...
    permission_classes = [IsAuthenticatedOrReadOnly]
 
+from rest_framework.filters import DjangoFilterBackend
+
+from django_filters import rest_framework as filters
+
+class BookFilter(filters.FilterSet):
+   title = filters.CharFilter(field_name='title', lookup_expr='icontains')
+   author = filters.CharFilter(field_name='author', lookup_expr='icontains')
+   publication_year = filters.NumberFilter(field_name='publication_year', lookup_expr='exact')
+
+   class Meta:
+      model = Book
+      fields = ['title', 'author', 'publication_year']
+
+from rest_framework import generics  
+from .models import Book  
+from .serializers import BookSerializer  
+from .filters import BookFilter  
+  
+class BookListView(generics.ListAPIView):  
+   queryset = Book.objects.all()  
+   serializer_class = BookSerializer  
+   filter_backends = [DjangoFilterBackend]  
+   filterset_class = BookFilter
+
+from rest_framework.filters import SearchFilter
+
+class BookListView(generics.ListAPIView):
+   ...
+   filter_backends = [DjangoFilterBackend, SearchFilter]
+   search_fields = ['title', 'author']
+
+class BookListView(generics.ListAPIView):  
+   queryset = Book.objects.all()  
+   serializer_class = BookSerializer  
+   filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]  
+   filterset_class = BookFilter  
+   search_fields = ['title', 'author']  
+   ordering_fields = ['title', 'publication_year']
