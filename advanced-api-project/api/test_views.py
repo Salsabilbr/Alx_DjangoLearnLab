@@ -1,7 +1,8 @@
 from django.test import TestCase  
 from rest_framework.test import APIClient  
 from .models import Book  
-  
+from rest_framework import status
+
 class BookCreateTestCase(TestCase.APITestCase):  
    def setUp(self):  
       self.client = APIClient()  
