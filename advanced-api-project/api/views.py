@@ -74,7 +74,7 @@ from rest_framework.filters import DjangoFilterBackend
 
 from django_filters import rest_framework as filters
 
-class BookFilter(filters.FilterSet.filters.OrderingFilter):
+class BookFilter(filters.FilterSet.filters.OrderingFilter.filters.SearchFilter):
    title = filters.CharFilter(field_name='title', lookup_expr='icontains')
    author = filters.CharFilter(field_name='author', lookup_expr='icontains')
    publication_year = filters.NumberFilter(field_name='publication_year', lookup_expr='exact')
