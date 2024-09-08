@@ -48,6 +48,7 @@ class BookListView(generics.ListAPIView):
 
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
+from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
 
 class BookCreateView(generics.CreateAPIView):
    ...
