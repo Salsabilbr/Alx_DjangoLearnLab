@@ -5,3 +5,4 @@ urlpatterns = [
    path('books/<int:pk>/update/', views.BookUpdateView.as_view()),  
    path('books/<int:pk>/delete/', views.BookDeleteView.as_view()),  
 ]
+["books/update", "books/delete"]
