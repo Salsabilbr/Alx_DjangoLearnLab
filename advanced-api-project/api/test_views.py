@@ -2,7 +2,7 @@ from django.test import TestCase
 from rest_framework.test import APIClient  
 from .models import Book  
   
-class BookCreateTestCase(TestCase):  
+class BookCreateTestCase(TestCase.APITestCase):  
    def setUp(self):  
       self.client = APIClient()  
   
