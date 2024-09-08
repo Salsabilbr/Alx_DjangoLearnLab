@@ -6,8 +6,8 @@ from rest_framework import status
 class BookCreateTestCase(TestCase.APITestCase):  
    def setUp(self):  
       self.client = APIClient()  
-  
-   def test_create_book(self):  
+        
+   def test_create_book(self.client.login):  
       data = {'title': 'Example Book', 'author': 'Example Author'}  
       response = self.client.post('/books/', data, format='json')  
       self.assertEqual(response.status_code, 201)  
