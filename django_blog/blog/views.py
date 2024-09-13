@@ -130,3 +130,5 @@ def comment_delete(request, post_id, comment_id):
    comment = Comment.objects.get(id=comment_id)  
    comment.delete()  
    return redirect('comment_list', post_id=post_id)
+
+["CommentCreateView", "CommentUpdateView", "CommentDeleteView"]
