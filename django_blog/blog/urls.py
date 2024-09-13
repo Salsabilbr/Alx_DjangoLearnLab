@@ -27,3 +27,5 @@ urlpatterns = [
    path('posts/<int:post_id>/comments/<int:comment_id>/edit/', views.comment_edit, name='comment_edit'),
    path('posts/<int:post_id>/comments/<int:comment_id>/delete/', views.comment_delete, name='comment_delete'),
 ]
+
+["comment/<int:pk>/update/", "post/<int:pk>/comments/new/", "comment/<int:pk>/delete/"]
