@@ -69,4 +69,20 @@ class PostDeleteView(DeleteView):
    model = Post
    template_name = 'blog/post_delete.html'
 
- # Create your views here.
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+
+class PostCreateView(LoginRequiredMixin, CreateView):
+   # ...
+
+class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+   # ...
+
+class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin,
+
+class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):  
+   # ...  
+  
+   def test_func(self):  
+      post = self.get_object()  
+      return self.request.user == post.author
+
