@@ -9,6 +9,7 @@ urlpatterns = [
 ]
 
 from . import views
+   post"/<int:pk>/delete/", "post/<int:pk>/update/", "post/new/"
 
 urlpatterns = [
    path('', views.PostListView.as_view(), name='post_list'),
@@ -17,3 +18,4 @@ urlpatterns = [
    path('<int:pk>/edit/', views.PostUpdateView.as_view(), name='post_update'),
    path('<int:pk>/delete/', views.PostDeleteView.as_view(), name='post_delete'),
 ]
+
