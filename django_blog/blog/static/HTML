@@ -1,1 +1,7 @@
-HTML
+<head>  
+   <link rel="stylesheet" href="{% static 'css/style.css' %}">  
+</head>  
+<body>  
+   <script src="{% static 'js/script.js' %}"></script>  
+   <img src="{% static 'images/logo.png' %}">  
+</body>
