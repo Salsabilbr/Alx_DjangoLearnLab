@@ -9,7 +9,7 @@ urlpatterns = [
 ]
 
 from . import views
-   "post"/<int:pk>/delete/", "post/<int:pk>/update/", "post/new/""
+   ["post/<int:pk>/delete/", "post/<int:pk>/delete/", "post/<int:pk>/update/", "post/new/"]
 urlpatterns = [
    path('', views.PostListView.as_view(), name='post_list'),
    path('new/', views.PostCreateView.as_view(), name='post_create'),
