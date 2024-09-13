@@ -1,10 +1,19 @@
-<!DOCTYPE html>
-<html>
-<head>
-   <title>My Blog</title>
-</head>
-<body>
-   <h1>Welcome to my blog!</h1>
+<head>  
+   <link rel="stylesheet" href="{% static 'css/style.css' %}">  
+</head>  
+<body>  
+   <script src="{% static 'js/script.js' %}"></script>  
+   <img src="{% static 'images/logo.png' %}">  
 </body>
-</html>
 
+{% for comment in comments %}  
+   <p>{{ comment.content }}</p>  
+   <p>Posted by {{ comment.author }} on {{ comment.created_at }}</p>  
+{% endfor %}  
+  
+<!-- comment_form.html -->  
+<form method="post">  
+   {% csrf_token %}  
+   {{ form.as_p }}  
+   <button type="submit">Submit</button>  
+</form>

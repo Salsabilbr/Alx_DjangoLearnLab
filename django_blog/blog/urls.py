@@ -17,3 +17,13 @@ urlpatterns = [
    path('<int:pk>/edit/', views.PostUpdateView.as_view(), name='post_update'),
    path('<int:pk>/delete/', views.PostDeleteView.as_view(), name='post_delete'),
 ]
+
+from django.urls import path
+from . import views
+
+urlpatterns = [
+   path('posts/<int:post_id>/comments/', views.comment_list, name='comment_list'),
+   path('posts/<int:post_id>/comments/new/', views.comment_create, name='comment_create'),
+   path('posts/<int:post_id>/comments/<int:comment_id>/edit/', views.comment_edit, name='comment_edit'),
+   path('posts/<int:post_id>/comments/<int:comment_id>/delete/', views.comment_delete, name='comment_delete'),
+]
