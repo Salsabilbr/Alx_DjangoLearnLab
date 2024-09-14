@@ -38,3 +38,10 @@ urlpatterns = [
    path('search/', views.search_posts, name='search_posts'),
 ]
 
+from django.conf import settings
+from django.conf.urls.static import static
+
+urlpatterns = [
+   # ... other URL patterns ...
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
