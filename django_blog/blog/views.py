@@ -132,3 +132,13 @@ def comment_delete(request, post_id, comment_id):
    return redirect('comment_list', post_id=post_id)
 
 ["CommentCreateView", "CommentUpdateView", "CommentDeleteView"]
+
+from django.db.models import Q  
+from django.shortcuts import render  
+  
+def search_posts(request):  
+   query = request.GET.get('q')  
+   posts = Post.objects.filter(  
+      Q(title__icontains=query) | Q(content__icontains=query) | Q(tags__name__icontains=query)  
+   )  
+   return render(request, 'search_results.html', {'posts': posts})

@@ -11,4 +11,15 @@ class Post(models.Model):
    updated_at = models.DateTimeField(auto_now=True)
 
 ["Comment(models.Model)"]
+
+from django.db import models
+
+class Tag(models.Model):
+   name = models.CharField(max_length=255)
+
+from django.db import models  
+  
+class Post(models.Model):  
+   tags = models.ManyToManyField(Tag)
+
 # Create your models here.

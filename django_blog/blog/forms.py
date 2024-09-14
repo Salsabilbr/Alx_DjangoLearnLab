@@ -34,3 +34,30 @@ class CommentForm(forms.ModelForm):
    class Meta:
       model = Comment
       fields = ('content',)
+
+from django import forms  
+from taggit.forms import TagWidget  
+  
+class PostForm(forms.ModelForm):  
+   tags = forms.CharField(widget=TagWidget)  
+  
+   class Meta:  
+      model = Post  
+      fields = ('title', 'content', 'tags')
+
+from django import forms  
+from taggit.forms import TagWidget  
+  
+class PostForm(forms.ModelForm):  
+   tags = forms.CharField(widget=TagWidget)  
+  
+   def save(self, commit=True):  
+      instance = super().save(commit=False)  
+      instance.tags.set(self.cleaned_data['tags'])  
+      if commit:  
+        instance.save()  
+      return instance  
+  
+   class Meta:  
+      model = Post  
+      fields = ('title', 'content', 'tags')
