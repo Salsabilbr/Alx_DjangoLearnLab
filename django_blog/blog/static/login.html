@@ -1,17 +1,17 @@
-<!DOCTYPE html>  
-<html>  
-<head>  
-   <title>Login</title>  
-</head>  
-<body>  
-   <h1>Login</h1>  
-   <form method="post">  
-      {% csrf_token %}  
-      <label for="username">Username:</label>  
-      <input type="text" id="username" name="username"><br><br>  
-      <label for="password">Password:</label>  
-      <input type="password" id="password" name="password"><br><br>  
-      <input type="submit" value="Login">  
-   </form>  
-</body>  
-</html>
+<!-- login.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Login</h1>
+  <form id="login-form" method="post">
+   {% csrf_token %}
+   <label for="username">Username:</label>
+   <input type="text" id="username" name="username"><br><br>
+   <label for="password">Password:</label>
+   <input type="password" id="password" name="password"><br><br>
+   <button type="submit">Login</button>
+   <p id="login-error"></p>
+  </form>
+  <script src="{% static 'script.js' %}"></script>
+{% endblock %}
+
