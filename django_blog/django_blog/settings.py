@@ -119,7 +119,23 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+STATICFILES-DIRS=[BASE-DIR/"static",]andTEMPLATES=[
+        {
+            'BACKEND':
+            'django.template.backends.django.DjangoTemplates',
+            DIRS':[BASE-DIR/'TEMPLATES'],
+            'APP-DIRS':True,
+            'OPTIONS':{
+            context_processors':[
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.template.context_processors.auth',
+                'django.template.context_processors.messages',
+                ]
+            }
+        }
+]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
