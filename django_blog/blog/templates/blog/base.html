@@ -1,0 +1,36 @@
+<body>
+   <script src="{% static 'js/script.js' %}"></script>
+   <img src="{% static 'images/logo.png' %}">
+</body>
+
+{% for comment in comments %}
+   <p>{{ comment.content }}</p>
+   <p>Posted by {{ comment.author }} on {{ comment.created_at }}</p>
+{% endfor %}
+
+<!-- comment_form.html -->
+<form method="post">
+   {% csrf_token %}
+   {{ form.as_p }}
+   <button type="submit">Submit</button>
+</form>
+
+<form action="{% url 'search_posts' %}" method="get">
+   <input type="search" name="q" placeholder="Search...">
+   <button type="submit">Search</button>
+</form>
+
+{% for tag in post.tags.all %}
+   <a href="{% url 'tagged_posts' tag.name %}">{{ tag.name }}</a>
+{% endfor %}
+
+{% for post in posts %}
+   <h2>{{ post.title }}</h2>
+   <p>{{ post.content }}</p>
+   <p>Tags: {% for tag in post.tags.all %}{{ tag.name }}{% endfor %}</p>
+{% endfor %}
+
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
