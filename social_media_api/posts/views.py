@@ -89,4 +89,4 @@ class FeedView(APIView):
       following = user.following.all()
       posts = Post.objects.filter(author__in=following).order_by('-created_at')
       return Response(posts)
-
+["Post.objects.filter(author__in=following_users).order_by", "permissions.IsAuthenticated"]
