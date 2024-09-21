@@ -49,3 +49,31 @@ class CommentViewSet(viewsets.ModelViewSet):
    ...  
    filter_backends = [DjangoFilterBackend]  
    filterset_fields = ['content']
+
+from rest_framework.response import Response  
+from rest_framework.views import APIView  
+from rest_framework.permissions import IsAuthenticated  
+from .models import Post, Like  
+from .serializers import PostSerializer  
+  
+class LikePostView(APIView):  
+   permission_classes = [IsAuthenticated]  
+  
+   def post(self, request, post_id):  
+      user = request.user  
+      post = Post.objects.get(id=post_id)  
+      like, created = Like.objects.get_or_create(user=user, post=post)  
+      if created:  
+        # Generate notification  
+        notification = Notification.objects.create(recipient=post.author, actor=user, verb='liked', target=post)  
+      return Response({'message': 'Post liked successfully'})  
+  
+class UnlikePostView(APIView):  
+   permission_classes = [IsAuthenticated]  
+  
+   def post(self, request, post_id):  
+      user = request.user  
+      post = Post.objects.get(id=post_id)  
+      like = Like.objects.get(user=user, post=post)  
+      like.delete()  
+      return Response({'message': 'Post unliked successfully'})
