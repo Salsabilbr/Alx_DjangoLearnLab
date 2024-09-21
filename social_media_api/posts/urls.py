@@ -9,3 +9,10 @@ router.register(r'comments', views.CommentViewSet)
 urlpatterns = [  
    path('', include(router.urls)),  
 ]
+
+from django.urls import path
+from . import views
+
+urlpatterns = [
+   path('feed/', views.FeedView.as_view(), name='feed'),
+]

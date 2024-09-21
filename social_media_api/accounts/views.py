@@ -46,3 +46,21 @@ class LoginView(ObtainAuthToken):
    def post(self, request, *args, **kwargs):
       ...
       return Response({'token': token.key})
+
+from rest_framework.response import Response  
+from rest_framework.views import APIView  
+from .models import User  
+  
+class FollowUserView(APIView):  
+   def post(self, request, user_id):  
+      user = request.user  
+      followee = User.objects.get(id=user_id)  
+      user.following.add(followee)  
+      return Response({'message': 'User followed successfully'})  
+  
+class UnfollowUserView(APIView):  
+   def post(self, request, user_id):  
+      user = request.user  
+      followee = User.objects.get(id=user_id)  
+      user.following.remove(followee)  
+      return Response({'message': 'User unfollowed successfully'})

@@ -77,3 +77,16 @@ class UnlikePostView(APIView):
       like = Like.objects.get(user=user, post=post)  
       like.delete()  
       return Response({'message': 'Post unliked successfully'})
+
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from .models import Post
+from accounts.models import User
+
+class FeedView(APIView):
+   def get(self, request):
+      user = request.user
+      following = user.following.all()
+      posts = Post.objects.filter(author__in=following).order_by('-created_at')
+      return Response(posts)
+
