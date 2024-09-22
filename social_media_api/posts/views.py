@@ -127,3 +127,4 @@ def unlike_post(request, pk):
    else:
       return HttpResponse('You must be logged in to unlike a post!')
 
+["generics.get_object_or_404(Post, pk=pk)", "Like.objects.get_or_create(user=request.user, post=post)"]
