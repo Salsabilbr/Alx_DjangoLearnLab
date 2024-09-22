@@ -90,3 +90,40 @@ class FeedView(APIView):
       posts = Post.objects.filter(author__in=following).order_by('-created_at')
       return Response(posts)
 ["Post.objects.filter(author__in=following_users).order_by", "permissions.IsAuthenticated"]
+
+from django.shortcuts import get_object_or_404
+from django.http import HttpResponse
+from .models import Post, Like
+
+def like_post(request, pk):
+   post = get_object_or_404(Post, pk=pk)
+   user = request.user
+   if user.is_authenticated:
+      like, created = Like.objects.get_or_create(post=post, user=user)
+      if created:
+        # Create a notification for the post author
+        notification = Notification.objects.create(
+           recipient=post.author,
+           actor=user,
+           verb='liked your post',
+           target=post
+        )
+        return HttpResponse('Post liked!')
+      else:
+        return HttpResponse('You already liked this post!')
+   else:
+      return HttpResponse('You must be logged in to like a post!')
+
+def unlike_post(request, pk):
+   post = get_object_or_404(Post, pk=pk)
+   user = request.user
+   if user.is_authenticated:
+      like = Like.objects.filter(post=post, user=user).first()
+      if like:
+        like.delete()
+        return HttpResponse('Post unliked!')
+      else:
+        return HttpResponse('You didn\'t like this post!')
+   else:
+      return HttpResponse('You must be logged in to unlike a post!')
+
